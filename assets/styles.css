@@ -475,3 +475,171 @@ h1 em,h2 em{font-style:normal;color:var(--yellow)}
  .premium-pet-hero .pet-hero-scene{transform:none!important;transition:none!important}
  .premium-pet-hero .hero-actions .btn::after{display:none}
 }
+
+
+
+/* =============================================================
+   PREMIUM MOTION PASS 02 / 2026-10-11
+   Progressive enhancement only — preserves layout, content,
+   carousel dimensions, navigation, WhatsApp, chat and map.
+   No animation libraries or new network dependencies.
+   ============================================================= */
+
+/* Subtle scroll reading progress (driven by one rAF scroll handler). */
+.site-header::after{
+  content:"";position:absolute;z-index:5;left:0;right:0;bottom:0;
+  height:2px;pointer-events:none;
+  background:linear-gradient(90deg,#ffcf00 0%,#ffeb76 52%,#20a8ef 100%);
+  transform-origin:left center;transform:scaleX(var(--page-scroll,0));
+  box-shadow:0 0 9px rgba(255,210,10,.36);
+}
+
+/* Action strip: gentle icon reaction, no card-height changes. */
+.utility-grid>a svg,.utility-grid>button svg{
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),background-color .25s,border-color .25s;
+}
+.utility-grid>a:is(:hover,:focus-visible) svg,
+.utility-grid>button:is(:hover,:focus-visible) svg{
+  transform:translateY(-2px) rotate(-5deg);
+  background-color:rgba(255,210,10,.13);border-color:rgba(255,210,10,.7);
+}
+
+/* Service cards: small spotlight that tracks the desktop cursor.
+   Focus-visible and tap retain obvious, usable feedback. */
+.service-card{
+  position:relative;isolation:isolate;
+  background:radial-gradient(230px circle at var(--spot-x,50%) var(--spot-y,0%),rgba(255,216,64,.095),transparent 78%),#fff;
+  transition:transform .28s cubic-bezier(.2,.8,.2,1),
+    box-shadow .28s ease,border-color .28s ease;
+}
+.service-card::before{
+  content:"";position:absolute;z-index:4;top:0;left:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,#ffdf4d,#ffb700 50%,#24a6eb);
+  transform:scaleY(0);transform-origin:top;
+  transition:transform .33s cubic-bezier(.2,.8,.2,1);pointer-events:none;
+}
+.service-card:is(:hover,:focus-within){
+  border-color:#b4d4eb;
+  box-shadow:0 20px 42px rgba(7,57,119,.14);
+}
+.service-card:is(:hover,:focus-within)::before{transform:scaleY(1)}
+.service-photo{overflow:visible}
+.service-photo img{
+  transition:transform .72s cubic-bezier(.2,.7,.18,1),filter .45s ease;
+  transform-origin:center;
+}
+.service-card:is(:hover,:focus-within) .service-photo img{
+  transform:scale(1.055);filter:saturate(1.06) contrast(1.025);
+}
+/* Image crop remains inside the existing photo area. */
+.service-photo{clip-path:inset(0 round 0)}
+.service-icon{
+  transition:transform .32s cubic-bezier(.18,.87,.25,1.25),
+    box-shadow .32s;
+}
+.service-card:is(:hover,:focus-within) .service-icon{
+  transform:translateY(-3px) rotate(-9deg);
+  box-shadow:0 8px 16px rgba(226,167,0,.22);
+}
+.service-body a:focus-visible{border-radius:4px}
+.service-card.micro-in{animation:petCardAppear .52s both cubic-bezier(.2,.8,.2,1)}
+@keyframes petCardAppear{
+  from{opacity:.72;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Benefits: elegant halo around existing yellow circles. */
+.benefit>span{position:relative;isolation:isolate}
+.benefit>span::after{
+  content:"";position:absolute;inset:-7px;border-radius:50%;
+  border:1px solid rgba(255,216,52,.45);
+  opacity:0;transform:scale(.85);
+  transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1);
+  pointer-events:none;
+}
+.benefit:is(:hover,:focus-within)>span::after{opacity:1;transform:scale(1.12)}
+.benefit:is(:hover,:focus-within)>span{
+  box-shadow:0 0 0 6px rgba(255,216,52,.08),0 10px 26px rgba(255,205,30,.17);
+}
+
+/* Real-source review cards: hover depth without invented content. */
+.review-card{
+  position:relative;isolation:isolate;overflow:hidden;
+  transition:transform .29s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s;
+}
+.review-card::before{
+  content:"“";font:900 90px/1 Georgia,serif;
+  position:absolute;right:14px;top:8px;color:#ffeaa4;
+  opacity:.36;pointer-events:none;z-index:-1;
+}
+.review-card.reveal.visible:is(:hover,:focus-within){
+  transform:translateY(-5px);border-color:#f4d470;
+  box-shadow:0 20px 39px rgba(6,48,111,.12);
+}
+.review-card .review-stars{
+  transition:filter .3s ease,transform .3s ease;
+  transform-origin:left center;
+}
+.review-card:is(:hover,:focus-within) .review-stars{
+  filter:drop-shadow(0 0 5px rgba(255,205,0,.29));transform:scale(1.035);
+}
+
+/* Heading accent does not change text or spacing. */
+.section-heading .eyebrow .line{
+  transform-origin:left;transition:transform .65s cubic-bezier(.2,.8,.2,1);
+}
+.section-heading.reveal.visible .eyebrow .line{animation:petSectionLine .9s both}
+@keyframes petSectionLine{from{transform:scaleX(.25)}to{transform:scaleX(1)}}
+
+/* FAQ answers: native accessible <details>; animate child only. */
+.faq-questions details{transition:border-color .22s,box-shadow .22s}
+.faq-questions details[open]{box-shadow:0 7px 18px rgba(196,147,0,.075)}
+.faq-questions summary{transition:background-color .2s,color .2s}
+.faq-questions details:not([open]) summary:is(:hover,:focus-visible){background:#f4f9ff}
+.faq-questions summary::after{
+  display:block;transition:transform .26s ease,color .26s;
+}
+.faq-questions details[open] summary::after{transform:rotate(180deg);color:#c48d00}
+.faq-questions details[open]>p{animation:petFaqReveal .27s ease-out both}
+@keyframes petFaqReveal{
+  from{opacity:.4;transform:translateY(-5px)}
+  to{opacity:1;transform:none}
+}
+
+/* CTA strip: atmospheric yellow shimmer contained in existing panel. */
+.contact-banner>div{position:relative;z-index:1}
+.contact-banner::before{
+  content:"";position:absolute;pointer-events:none;z-index:0;
+  width:310px;height:310px;left:40%;top:-135px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,212,40,.12),transparent 69%);
+  animation:petSoftGlow 13s ease-in-out infinite alternate;
+}
+@keyframes petSoftGlow{
+  from{transform:translate3d(-45px,3px,0) scale(.92)}
+  to{transform:translate3d(70px,22px,0) scale(1.12)}
+}
+@media(max-width:700px){
+  /* No hover-dependent movement required on touch. */
+  .service-card:active .service-icon{transform:scale(.96)}
+  .review-card.reveal.visible:is(:hover,:focus-within){transform:none}
+  .contact-banner::before{left:45%;width:220px;height:220px}
+  .mobile-dock:not([hidden]) .dock-primary{
+    animation:petDockGlow 8s ease-in-out infinite;
+  }
+  @keyframes petDockGlow{
+    0%,76%,100%{box-shadow:none}
+    82%{box-shadow:0 0 0 3px rgba(255,210,10,.15)}
+    89%{box-shadow:0 0 0 0 rgba(255,210,10,0)}
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .service-card.micro-in,.contact-banner::before,
+  .section-heading.reveal.visible .eyebrow .line,
+  .faq-questions details[open]>p,
+  .mobile-dock:not([hidden]) .dock-primary{animation:none!important}
+  .service-card,.service-card::before,.service-photo img,
+  .service-icon,.review-card,.review-stars,.benefit>span::after,
+  .faq-questions summary,.faq-questions summary::after,
+  .utility-grid svg{transition:none!important}
+  .service-card:hover,.review-card.reveal.visible:hover{transform:none!important}
+}
