@@ -770,3 +770,6 @@ h1 em,h2 em{font-style:normal;color:var(--yellow)}
 @media(prefers-reduced-motion:reduce){
  .premium-pet-hero .mobile-family-animals,.premium-pet-hero .mobile-family-spark{animation:none!important;transform:none!important}
 }
+
+/* Guarantee the single semantic headline remains visible on mobile. */
+@media(max-width:700px){.premium-pet-hero .hero-copy h1.mobile-family-title{display:block}}
