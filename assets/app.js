@@ -399,3 +399,17 @@ if(map && 'IntersectionObserver' in window){
     cards.forEach(card=>motionObserver.observe(card));
   }
 })();
+
+
+(function(){
+ const love=document.getElementById('familyLove'),scene=document.querySelector('.mobile-family-scene');
+ if(!love||!scene)return;
+ love.addEventListener('click',()=>{
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  for(let i=0;i<5;i++){
+   const heart=document.createElement('span');heart.textContent='♥';heart.setAttribute('aria-hidden','true');
+   heart.style.cssText='position:absolute;z-index:7;pointer-events:none;color:#ffe03a;bottom:12%;right:'+(16+i*9)+'%;font-size:'+(18+i*4)+'px;animation:heartBurst 1.28s cubic-bezier(.2,.8,.3,1) forwards;--burst-x:'+(i-2)*30+'px;--burst-y:'+-115+'px;--burst-rot:'+(i-2)*14+'deg';
+   scene.append(heart);heart.addEventListener('animationend',()=>heart.remove(),{once:true});
+  }
+ });
+})();
