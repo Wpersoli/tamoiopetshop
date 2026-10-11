@@ -531,8 +531,10 @@ h1 em,h2 em{font-style:normal;color:var(--yellow)}
 .service-card:is(:hover,:focus-within) .service-photo img{
   transform:scale(1.055);filter:saturate(1.06) contrast(1.025);
 }
-/* Image crop remains inside the existing photo area. */
-.service-photo{clip-path:inset(0 round 0)}
+/* Crop only the photograph, never the original yellow service icon. */
+.service-photo img{clip-path:inset(0);transition:transform .72s cubic-bezier(.2,.7,.18,1),clip-path .72s cubic-bezier(.2,.7,.18,1),filter .45s ease}
+.service-card:is(:hover,:focus-within) .service-photo img{clip-path:inset(2.7%)}
+.service-icon{z-index:2}
 .service-icon{
   transition:transform .32s cubic-bezier(.18,.87,.25,1.25),
     box-shadow .32s;
