@@ -645,3 +645,79 @@ h1 em,h2 em{font-style:normal;color:var(--yellow)}
   .utility-grid svg{transition:none!important}
   .service-card:hover,.review-card.reveal.visible:hover{transform:none!important}
 }
+
+
+/* Tamoio family hero — approved mobile composition, no desktop changes. */
+.mobile-family-kicker,.mobile-family-title,.mobile-family-scene,.mobile-family-trust{display:none}
+@media(max-width:700px){
+ .premium-pet-hero{background:#04245d}
+ .premium-pet-hero .hero-glow{
+  background:radial-gradient(ellipse at 83% 38%,rgba(16,102,206,.46),transparent 63%),
+             radial-gradient(ellipse at 0% 88%,rgba(23,86,189,.6),transparent 62%),
+             linear-gradient(141deg,#04245b,#0c3f8a 59%,#051b49);
+ }
+ .premium-pet-hero .hero-layout{padding-top:26px;padding-bottom:40px;position:relative}
+ .premium-pet-hero .hero-copy>.eyebrow,.premium-pet-hero .hero-copy h1{display:none}
+ .premium-pet-hero .mobile-family-kicker{display:block;order:1;color:#a0caff;
+  font:800 11px/1.55 Montserrat,sans-serif;letter-spacing:.23em;margin-bottom:13px;
+  align-self:flex-start}
+ .premium-pet-hero .mobile-family-kicker::after{content:'';display:block;width:37px;height:2px;background:#ffdb23;margin-top:11px}
+ .premium-pet-hero .mobile-family-title{display:block;order:2;position:relative;z-index:2;width:100%;
+   font:900 clamp(30px,8.3vw,53px)/1.09 Montserrat,sans-serif;letter-spacing:-.057em;
+   color:#fff;margin:0 0 11px;text-wrap:balance}
+ .premium-pet-hero .mobile-family-title em{font-style:normal;color:#ffda16}
+ .premium-pet-hero .hero-copy p{order:3;color:#eaf3ff;max-width:500px;font-size:clamp(13px,3.55vw,17px);line-height:1.53;margin:0 0 0}
+ .premium-pet-hero .hero-visual{order:4;margin:0!important;height:clamp(295px,89vw,475px)!important;flex-basis:auto!important;width:100%!important;max-width:100%!important;overflow:visible}
+ .premium-pet-hero .pet-hero-scene{display:none}
+ .premium-pet-hero .mobile-family-scene{display:block;position:relative;width:100%;height:100%;
+   isolation:isolate;border-radius:34% 20% 12% 19% / 23% 22% 13% 23%;overflow:hidden}
+ .mobile-family-glow{position:absolute;inset:0;z-index:-1;
+    background:radial-gradient(ellipse at 72% 58%,#ffdb23 0%,#ffce14 24%,transparent 60%),
+    radial-gradient(ellipse at 12% 80%,#2059b8,transparent 68%)}
+ .mobile-family-animals{width:100%;height:100%;object-fit:cover;object-position:56% 48%;
+    animation:familyFloat 7s ease-in-out infinite alternate;
+    will-change:transform}
+ @keyframes familyFloat{from{transform:scale(1.01) translateY(1px)}to{transform:scale(1.047) translateY(-4px)}}
+ .mobile-family-quote{position:absolute;top:6px;right:5px;z-index:2;max-width:42%;
+   color:#ffe152;transform:rotate(-8deg);text-align:center;
+   font:800 clamp(12px,3.6vw,18px)/1.1 'Nunito Sans',sans-serif;
+   text-shadow:1px 2px 5px #05244b}
+ .mobile-family-quote b{font-size:21px}
+ .mobile-family-spark{position:absolute;top:27%;right:0;z-index:2;
+  color:#ffdc29;font-size:36px;animation:familyHeartbeat 2.7s ease-in-out infinite}
+ .mobile-family-spark.second{right:auto;left:4%;top:61%;font-size:21px;animation-delay:1s}
+ @keyframes familyHeartbeat{0%,100%{transform:scale(.85);opacity:.65}20%{transform:scale(1.25);opacity:1}38%{transform:scale(1)}54%{transform:scale(1.17)}}
+ .mobile-family-love{position:absolute;right:5px;bottom:9px;z-index:4;min-height:39px;display:flex;align-items:center;gap:5px;padding:7px 11px;
+   color:#ffe248;font-size:25px;background:rgba(7,43,92,.92);border:1px solid rgba(255,219,44,.7);border-radius:29px}
+ .mobile-family-love span{font:800 10px Montserrat,sans-serif;color:#fff}
+ .mobile-family-love:active{transform:scale(.96)}
+ .premium-pet-hero .hero-chips{order:5;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:0 0 17px}
+ .premium-pet-hero .hero-chips a{border:1px solid #4e83bc;border-radius:14px;background:#092c65;
+   padding:14px 2px 10px;min-width:0;min-height:93px;font-size:clamp(8px,2.35vw,11px);
+   display:flex;flex-direction:column;justify-content:space-between;gap:8px}
+ .premium-pet-hero .hero-chips svg{width:27px;height:27px}
+ .premium-pet-hero .hero-chips a::after{content:'→';height:21px;width:21px;border-radius:50%;
+  display:grid;place-items:center;background:#10488a;color:#fff;font-size:15px;line-height:1}
+ .premium-pet-hero .hero-actions{order:6;margin:0;gap:10px}
+ .premium-pet-hero .hero-actions .btn{border-radius:999px;min-height:58px;
+  font:850 clamp(12px,3.5vw,16px)/1.3 Montserrat,sans-serif}
+ .premium-pet-hero .hero-actions .btn svg{width:20px;height:20px}
+ .premium-pet-hero .hero-actions .btn-green{background:#06be63}
+ .premium-pet-hero .mobile-family-trust{display:grid;order:7;width:100%;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0;margin:23px 0 0;padding:0 0 5px;color:#dceaff}
+ .mobile-family-trust span{min-width:0;display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:0 6px;border-right:1px solid rgba(151,204,250,.36);font-size:clamp(9px,2.35vw,11px);line-height:1.35}
+ .mobile-family-trust span:last-child{border:0}
+ .mobile-family-trust svg{color:#ffdc28;width:24px;height:24px}
+ .premium-pet-hero .paw-track{opacity:.1}
+}
+@media(max-width:380px){
+ .premium-pet-hero .mobile-family-title{font-size:clamp(27px,8vw,32px)}
+ .premium-pet-hero .hero-visual{height:clamp(264px,85vw,310px)!important}
+ .premium-pet-hero .hero-chips a{min-height:88px;font-size:8px}
+ .mobile-family-trust span{font-size:9px;padding:0 3px}
+ .mobile-family-trust svg{width:19px;height:19px}
+}
+@media(prefers-reduced-motion:reduce){
+ .mobile-family-animals,.mobile-family-spark{animation:none!important;transform:none!important}
+}
