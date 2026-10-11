@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+# Demonstração comercial não oficial — remover após autorização do estabelecimento.
