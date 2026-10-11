@@ -339,3 +339,63 @@ if(map && 'IntersectionObserver' in window){
  hit.addEventListener('click',hearts);
  reducedMotion.addEventListener?.('change',()=>{if(reducedMotion.matches){stage.style.removeProperty('--hero-shift-x');stage.style.removeProperty('--hero-shift-y');stage.style.removeProperty('--hero-tilt');}});
 })();
+
+
+
+/* PREMIUM MOTION PASS 02: conservative UI microinteractions.
+   Passive, rAF-limited updates; reduced-motion aware. */
+(function setupPremiumVisualFeedback(){
+  const header=document.querySelector('.site-header');
+  let scrollPending=false;
+  function updateReadingProgress(){
+    scrollPending=false;
+    if(!header)return;
+    const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+    const progress=Math.max(0,Math.min(1,scrollY/max));
+    header.style.setProperty('--page-scroll',progress.toFixed(4));
+  }
+  function requestReadingProgress(){
+    if(scrollPending)return;
+    scrollPending=true;requestAnimationFrame(updateReadingProgress);
+  }
+  window.addEventListener('scroll',requestReadingProgress,{passive:true});
+  window.addEventListener('resize',requestReadingProgress,{passive:true});
+  window.addEventListener('pageshow',requestReadingProgress);
+  requestReadingProgress();
+
+  const canHover=matchMedia('(hover: hover) and (pointer: fine)');
+  const cards=$$('.service-card');
+  for(const card of cards){
+    let pending=false,px=50,py=0;
+    card.addEventListener('pointermove',e=>{
+      if(!canHover.matches||reducedMotion.matches)return;
+      const rect=card.getBoundingClientRect();
+      px=Math.max(0,Math.min(100,100*(e.clientX-rect.left)/rect.width));
+      py=Math.max(0,Math.min(100,100*(e.clientY-rect.top)/rect.height));
+      if(pending)return;
+      pending=true;
+      requestAnimationFrame(()=>{
+        pending=false;
+        card.style.setProperty('--spot-x',px.toFixed(1)+'%');
+        card.style.setProperty('--spot-y',py.toFixed(1)+'%');
+      });
+    },{passive:true});
+    card.addEventListener('pointerleave',()=>{
+      card.style.removeProperty('--spot-x');
+      card.style.removeProperty('--spot-y');
+    },{passive:true});
+  }
+
+  // One-shot entrance with native IntersectionObserver; all cards
+  // remain readable if scripting or observers are unavailable.
+  if(!reducedMotion.matches&&'IntersectionObserver' in window){
+    const motionObserver=new IntersectionObserver(entries=>{
+      for(const entry of entries){
+        if(!entry.isIntersecting)continue;
+        entry.target.classList.add('micro-in');
+        motionObserver.unobserve(entry.target);
+      }
+    },{threshold:0.12,rootMargin:'0px 0px -12px 0px'});
+    cards.forEach(card=>motionObserver.observe(card));
+  }
+})();
