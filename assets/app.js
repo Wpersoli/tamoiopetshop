@@ -30,7 +30,7 @@ $$('.mobile-nav a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){setMenu(false);closeChat();}});
 window.addEventListener('resize',()=>{if(innerWidth>950 && !menuNavHidden())setMenu(false)},{passive:true});
 document.addEventListener('click',e=>{
- if(!mobileNav?.hidden && !e.target.closest('.mobile-nav,.menu-toggle'))setMenu(false);
+ if(!mobileNav?.hidden && !e.composedPath().includes(mobileNav) && !e.composedPath().includes(menuToggle))setMenu(false);
 });
 /* In-view entrance — immediately render all elements without IntersectionObserver */
 if('IntersectionObserver' in window && !reducedMotion.matches){
