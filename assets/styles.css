@@ -376,3 +376,102 @@ h1 em,h2 em{font-style:normal;color:var(--yellow)}
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* === HERO TAMOIO — animation refinement | 2026-10-11 ===
+   Scoped exclusively to the hero: no changes to services, chat or route. */
+.premium-pet-hero{--hero-shift-x:0px;--hero-shift-y:0px;--hero-tilt:0deg;background:#06285c}
+.premium-pet-hero .hero-glow{background:
+ radial-gradient(circle at 78% 17%,rgba(34,128,252,.43),transparent 34%),
+ radial-gradient(circle at 3% 10%,rgba(23,103,213,.48),transparent 44%),
+ linear-gradient(118deg,#051b43 0%,#073875 58%,#0d4697 100%)}
+.premium-pet-hero .hero-layout{grid-template-columns:minmax(0,52%) minmax(0,48%);min-height:586px}
+.premium-pet-hero .hero-copy{padding-block:70px 77px}
+.premium-pet-hero .hero-copy h1{max-width:650px;position:relative;z-index:2}
+.premium-pet-hero .hero-copy p{max-width:535px}
+.premium-pet-hero .hero-paw-trail{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.premium-pet-hero .paw-track{position:absolute;color:#b9d9ff;opacity:0;will-change:transform,opacity;transform:translate3d(0,14px,0) rotate(-30deg);animation:pawMarch 11.7s linear infinite}
+.premium-pet-hero .paw-track svg{width:100%;height:100%;filter:drop-shadow(0 4px 3px rgba(2,13,41,.27))}
+.premium-pet-hero .paw-track-1{left:4%;top:11%;width:57px;height:57px;animation-delay:-1s}
+.premium-pet-hero .paw-track-2{left:11%;top:18%;width:37px;height:37px;animation-delay:-2.4s}
+.premium-pet-hero .paw-track-3{left:2%;top:61%;width:73px;height:73px;animation-delay:-5.4s}
+.premium-pet-hero .paw-track-4{left:17%;top:76%;width:48px;height:48px;animation-delay:-8.6s}
+.premium-pet-hero .paw-track-5{left:38%;top:5%;width:40px;height:40px;animation-delay:-6s}
+.premium-pet-hero .paw-track-6{left:47%;top:66%;width:56px;height:56px;animation-delay:-10s}
+.premium-pet-hero .paw-track-7{left:61%;top:11%;width:39px;height:39px;animation-delay:-3.8s}
+.premium-pet-hero .paw-track-8{left:90%;top:63%;width:70px;height:70px;animation-delay:-9.8s}
+.premium-pet-hero .paw-track-9{left:81%;top:5%;width:30px;height:30px;animation-delay:-7.7s}
+.premium-pet-hero .paw-track-10{left:33%;top:87%;width:36px;height:36px;animation-delay:-4.3s}
+@keyframes pawMarch{
+  0%,100%{opacity:0;transform:translate3d(-14px,30px,0) rotate(-26deg) scale(.82)}
+  24%{opacity:.13}
+  44%{opacity:.23;transform:translate3d(9px,0,0) rotate(-17deg) scale(1)}
+  71%{opacity:.12}
+  90%{opacity:0;transform:translate3d(29px,-31px,0) rotate(-8deg) scale(1.1)}
+}
+.premium-pet-hero .hero-visual{height:575px;width:114%;max-width:none;margin-left:-3%;align-self:end;z-index:1;isolation:isolate}
+.premium-pet-hero .pet-hero-scene{position:relative;width:100%;height:100%;overflow:hidden;border-radius:42% 15% 7% 23% / 36% 24% 9% 20%;
+ background:radial-gradient(circle at 60% 58%,#1760aa 0%,#0d3d83 55%,transparent 80%);
+ transform:translate3d(var(--hero-shift-x),var(--hero-shift-y),0) rotate(var(--hero-tilt));
+ transition:transform .45s cubic-bezier(.2,.8,.2,1),filter .4s;filter:drop-shadow(0 15px 16px rgba(0,7,36,.12));
+}
+.premium-pet-hero .pet-hero-art{display:block;width:100%;height:100%;object-fit:cover;object-position:54% 50%;transform-origin:55% 64%;animation:petBreathe 7.5s ease-in-out infinite alternate;filter:saturate(1.08)}
+@keyframes petBreathe{from{transform:scale(1.022) translate3d(0,0,0)}to{transform:scale(1.06) translate3d(-5px,4px,0)}}
+.premium-pet-hero .pet-scene-heart{position:absolute;z-index:3;color:#ffe02a;line-height:1;filter:drop-shadow(0 1px 6px rgba(255,212,27,.7));pointer-events:none;will-change:transform,opacity}
+.premium-pet-hero .pet-heart-1{left:8%;top:23%;font-size:38px;animation:petHeartbeat 3s ease-in-out infinite}
+.premium-pet-hero .pet-heart-2{right:9%;top:20%;font-size:26px;animation:petHeartbeat 3.4s 1s ease-in-out infinite}
+.premium-pet-hero .pet-heart-3{right:3%;top:54%;font-size:27px;animation:petFloat 5s 1.7s ease-in-out infinite}
+.premium-pet-hero .pet-heart-4{left:8%;top:67%;font-size:18px;animation:petFloat 4.2s .3s ease-in-out infinite}
+@keyframes petHeartbeat{0%,100%{opacity:.6;transform:scale(.88) rotate(-14deg)}18%{opacity:1;transform:scale(1.23) rotate(-9deg)}35%{transform:scale(1.02) rotate(-14deg)}47%{transform:scale(1.16) rotate(-10deg)}66%{transform:scale(.93) rotate(-14deg)}}
+@keyframes petFloat{0%,100%{opacity:.22;transform:translate3d(0,9px,0) rotate(-12deg) scale(.8)}50%{opacity:.9;transform:translate3d(8px,-20px,0) rotate(12deg) scale(1.2)}}
+.premium-pet-hero .pet-scene-touch{position:absolute;inset:0;display:block;width:100%;height:100%;background:transparent;border:0;z-index:5;cursor:pointer;touch-action:pan-y}
+.premium-pet-hero .pet-scene-touch:focus-visible{outline:3px solid #ffe157;outline-offset:-6px;border-radius:36%}
+.premium-pet-hero .pet-scene-hint{position:absolute;bottom:7%;right:9%;display:flex;align-items:center;gap:5px;padding:7px 11px;color:#fff;font:800 11px Montserrat,sans-serif;background:rgba(3,31,70,.78);border:1px solid rgba(255,225,87,.5);border-radius:40px;box-shadow:0 8px 18px #04275366;transition:background .2s,transform .2s;pointer-events:none}
+.premium-pet-hero .pet-scene-hint span{color:#ffde30;font-size:19px;line-height:.9}
+.premium-pet-hero .pet-scene-touch:hover .pet-scene-hint{background:#113e7a;transform:translateY(-3px)}
+.premium-pet-hero .pet-heart-burst{position:absolute;z-index:7;pointer-events:none;color:#ffda19;font-size:var(--burst-size,26px);left:var(--burst-left,50%);top:var(--burst-top,55%);text-shadow:0 0 14px #ffe586;animation:heartBurst 1.28s cubic-bezier(.2,.8,.3,1) forwards}
+@keyframes heartBurst{0%{opacity:0;transform:translate3d(0,6px,0) rotate(-18deg) scale(.4)}16%{opacity:1;transform:scale(1.24)}100%{opacity:0;transform:translate3d(var(--burst-x,30px),var(--burst-y,-120px),0) rotate(var(--burst-rot,20deg)) scale(.78)}}
+.premium-pet-hero .hero-actions .btn{position:relative;overflow:hidden;isolation:isolate}
+.premium-pet-hero .hero-actions .btn::after{content:'';position:absolute;inset:0;width:40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-22deg) translateX(-340%);transition:transform .7s ease;pointer-events:none}
+.premium-pet-hero .hero-actions .btn:hover::after{transform:skewX(-22deg) translateX(450%)}
+.premium-pet-hero .hero-chips a{transition:transform .25s ease,background .2s,border .2s}
+.premium-pet-hero .hero-chips a:hover{transform:translateY(-3px)}
+.premium-pet-hero .hero-chips a:hover svg{animation:petIconWiggle .45s ease-in-out}
+@keyframes petIconWiggle{0%,100%{transform:rotate(0)}35%{transform:rotate(-15deg)}70%{transform:rotate(12deg)}}
+@media (max-width:1150px) and (min-width:951px){
+ .premium-pet-hero .hero-layout{grid-template-columns:minmax(0,53%) minmax(0,47%)}
+ .premium-pet-hero .hero-visual{width:110%;height:515px}
+}
+@media (max-width:950px) and (min-width:701px){
+ .premium-pet-hero .hero-layout{grid-template-columns:minmax(0,52%) minmax(0,48%)}
+ .premium-pet-hero .hero-visual{width:105%;height:480px;margin-left:-2%}
+ .premium-pet-hero .hero-copy{padding-block:45px}
+ .premium-pet-hero .hero-copy h1{font-size:clamp(2.1rem,4.5vw,3rem)}
+}
+@media(max-width:700px){
+ .premium-pet-hero .hero-layout{display:flex;min-height:0;padding-top:20px;padding-bottom:20px}
+ .premium-pet-hero .hero-copy{display:contents}
+ .premium-pet-hero .hero-visual{width:100%;max-width:100%;margin:0;order:4;align-self:center;height:clamp(235px,69vw,355px);flex:0 0 auto}
+ .premium-pet-hero .pet-hero-scene{width:100%;height:100%;border-radius:28% 25% 18% 20% / 25% 22% 20% 22%}
+ .premium-pet-hero .pet-hero-art{object-fit:cover;object-position:50% 47%;animation-duration:9s}
+ .premium-pet-hero .pet-scene-hint{font-size:10px;bottom:6%;right:4%}
+ .premium-pet-hero .pet-heart-1{font-size:23px}
+ .premium-pet-hero .pet-heart-2{font-size:19px}
+ .premium-pet-hero .pet-heart-3{font-size:21px}
+ .premium-pet-hero .hero-paw-trail{display:block}
+ .premium-pet-hero .paw-track-3,.premium-pet-hero .paw-track-4,.premium-pet-hero .paw-track-6,.premium-pet-hero .paw-track-8{display:none}
+ .premium-pet-hero .paw-track{animation-duration:16s}
+ .premium-pet-hero .paw-track svg{opacity:.65}
+}
+@media(max-width:380px){
+ .premium-pet-hero .hero-visual{height:clamp(205px,65vw,240px);flex-basis:auto}
+ .premium-pet-hero .hero-copy h1{font-size:clamp(1.86rem,8.2vw,2.2rem)}
+ .premium-pet-hero .pet-scene-hint{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+ .premium-pet-hero .paw-track,.premium-pet-hero .pet-hero-art,
+ .premium-pet-hero .pet-scene-heart,.premium-pet-hero .pet-heart-burst{animation:none!important;transform:none!important;transition:none!important}
+ .premium-pet-hero .paw-track{opacity:.13}
+ .premium-pet-hero .pet-scene-heart{opacity:.7}
+ .premium-pet-hero .pet-hero-scene{transform:none!important;transition:none!important}
+ .premium-pet-hero .hero-actions .btn::after{display:none}
+}

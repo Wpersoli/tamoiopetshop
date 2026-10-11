@@ -54,8 +54,20 @@
   </nav>
 </header>
 <main id="principal">
-<section id="inicio" class="hero section-dark" aria-labelledby="heroTitle">
-  <div class="hero-glow" aria-hidden="true"></div><span class="hero-paw paw-one" aria-hidden="true">🐾</span><span class="hero-paw paw-two" aria-hidden="true">🐾</span>
+<section id="inicio" class="hero section-dark premium-pet-hero" aria-labelledby="heroTitle">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-paw-trail" aria-hidden="true">
+    <span class="paw-track paw-track-1"><svg><use href="#i-paw"/></svg></span>
+    <span class="paw-track paw-track-2"><svg><use href="#i-paw"/></svg></span>
+    <span class="paw-track paw-track-3"><svg><use href="#i-paw"/></svg></span>
+    <span class="paw-track paw-track-4"><svg><use href="#i-paw"/></svg></span>
+    <span class="paw-track paw-track-5"><svg><use href="#i-paw"/></svg></span>
+    <span class="paw-track paw-track-6"><svg><use href="#i-paw"/></svg></span>
+    <span class="paw-track paw-track-7"><svg><use href="#i-paw"/></svg></span>
+    <span class="paw-track paw-track-8"><svg><use href="#i-paw"/></svg></span>
+    <span class="paw-track paw-track-9"><svg><use href="#i-paw"/></svg></span>
+    <span class="paw-track paw-track-10"><svg><use href="#i-paw"/></svg></span>
+  </div>
   <div class="container hero-layout">
     <div class="hero-copy reveal">
       <span class="eyebrow eyebrow-yellow"><svg><use href="#i-paw"/></svg> O CUIDADO QUE SEU PET MERECE</span>
@@ -72,11 +84,18 @@
         <a href="#servicos"><svg><use href="#i-car"/></svg> Táxi pet</a>
       </div>
     </div>
-    <div class="hero-visual reveal" aria-label="Fotografias ilustrativas de cães e gatos">
-      <div class="hero-photo photo-main"><img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=1100&q=82&fit=crop" alt="Cachorro de pelo dourado, fotografia ilustrativa" width="700" height="850" fetchpriority="high"></div>
-      <div class="hero-photo photo-cat"><img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=600&q=82&fit=crop" alt="Gato de olhos atentos, fotografia ilustrativa" width="350" height="390" loading="lazy"></div>
-      <span class="hero-note">Pets felizes,<br>famílias mais tranquilas! <span>♡</span></span>
-      <span class="hero-heart" aria-hidden="true">♥</span>
+    <div class="hero-visual pet-hero-stage reveal" id="heroPetStage">
+      <!-- Cão e gato do esboço aprovado, separados da interface para manter CTAs acessíveis. -->
+      <div class="pet-hero-scene">
+        <img class="pet-hero-art" src="assets/tamoio-pets-motion.webp" alt="Arte ilustrativa com um golden retriever e um gato alaranjado; mensagem: pets felizes, famílias mais tranquilas." width="862" height="670" fetchpriority="high" decoding="async">
+        <span class="pet-scene-heart pet-heart-1" aria-hidden="true">♥</span>
+        <span class="pet-scene-heart pet-heart-2" aria-hidden="true">♥</span>
+        <span class="pet-scene-heart pet-heart-3" aria-hidden="true">♥</span>
+        <span class="pet-scene-heart pet-heart-4" aria-hidden="true">♥</span>
+        <button class="pet-scene-touch" id="petSceneTouch" type="button" aria-label="Fazer carinho nos pets e soltar corações" title="Clique ou toque para dar carinho aos pets">
+          <span class="pet-scene-hint" aria-hidden="true">Dê carinho <span>♡</span></span>
+        </button>
+      </div>
     </div>
   </div>
   <div class="hero-scroll"><span>DESCUBRA NOSSOS SERVIÇOS</span><svg><use href="#i-arrow"/></svg></div>

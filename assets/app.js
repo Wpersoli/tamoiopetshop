@@ -288,3 +288,54 @@ updateMapLink();
 if(map && 'IntersectionObserver' in window){
  new IntersectionObserver(es=>{if(es[0].isIntersecting)map.invalidateSize();},{threshold:.1}).observe($('#tamoioMap'));
 }
+
+
+/* Hero microinteractions — pointer-sensitive, accessible and motion-reduced.
+   The artwork is static; subtle transforms create depth rather than faking live footage. */
+(function setupPetHero(){
+ const stage=document.getElementById('heroPetStage');
+ const hero=document.querySelector('.premium-pet-hero');
+ const hit=document.getElementById('petSceneTouch');
+ if(!stage||!hero||!hit)return;
+ const supportsPointer=matchMedia('(hover:hover) and (pointer:fine)');
+ const canAnimate=()=>!reducedMotion.matches;
+ let queued=0, px=0,py=0;
+ const update=()=>{
+   queued=0;
+   stage.style.setProperty('--hero-shift-x',(px*10).toFixed(1)+'px');
+   stage.style.setProperty('--hero-shift-y',(py*7).toFixed(1)+'px');
+   stage.style.setProperty('--hero-tilt',(px*1.15).toFixed(2)+'deg');
+ };
+ const move=e=>{
+   if(!canAnimate()||!supportsPointer.matches)return;
+   const r=stage.getBoundingClientRect();
+   px=Math.max(-1,Math.min(1,((e.clientX-r.left)/r.width-.5)*2));
+   py=Math.max(-1,Math.min(1,((e.clientY-r.top)/r.height-.5)*2));
+   if(!queued)queued=requestAnimationFrame(update);
+ };
+ const reset=()=>{
+   px=0;py=0;if(!queued)queued=requestAnimationFrame(update);
+ };
+ stage.addEventListener('pointermove',move,{passive:true});
+ stage.addEventListener('pointerleave',reset,{passive:true});
+ function hearts(e){
+   if(!canAnimate())return;
+   const rect=stage.getBoundingClientRect();
+   const left=e?.clientX?Math.max(14,Math.min(85,(e.clientX-rect.left)/rect.width*100)):54;
+   const top=e?.clientY?Math.max(12,Math.min(78,(e.clientY-rect.top)/rect.height*100)):55;
+   for(let i=0;i<5;i++){
+     const el=document.createElement('span');el.className='pet-heart-burst';el.textContent='♥';
+     el.setAttribute('aria-hidden','true');
+     el.style.setProperty('--burst-left',(left+(i-2)*4)+'%');
+     el.style.setProperty('--burst-top',(top+(i%2)*3)+'%');
+     el.style.setProperty('--burst-x',(((i-2)*34)+(Math.random()*12-6)).toFixed(0)+'px');
+     el.style.setProperty('--burst-y',(-72-i*17)+'px');
+     el.style.setProperty('--burst-rot',(-25+i*14)+'deg');
+     el.style.setProperty('--burst-size',(19+i*3)+'px');
+     stage.append(el);
+     el.addEventListener('animationend',()=>el.remove(),{once:true});
+   }
+ }
+ hit.addEventListener('click',hearts);
+ reducedMotion.addEventListener?.('change',()=>{if(reducedMotion.matches){stage.style.removeProperty('--hero-shift-x');stage.style.removeProperty('--hero-shift-y');stage.style.removeProperty('--hero-tilt');}});
+})();
