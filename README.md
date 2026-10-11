@@ -3,7 +3,7 @@
 Apresentação comercial independente, responsiva, **não aprovada oficialmente pelo estabelecimento**.
 
 ## Identidade e informações
-- Identidade visual amarela/azul baseada no logotipo fornecido pelo proponente.
+- Identidade visual amarela/azul com o logotipo ORIGINAL fornecido pelo proponente, salvo localmente em assets/logo-tamoio.png (sem modificação da arte).
 - Instagram: https://www.instagram.com/tamoiopetshop/
 - Facebook: https://www.facebook.com/share/196HDpK1MU/ (identificado no Linktree oficial)
 - Endereço: Rua Jardim Tamoio, 560, Conjunto Residencial José Bonifácio, São Paulo/SP — CEP 08255-010.
