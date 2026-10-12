@@ -413,3 +413,25 @@ if(map && 'IntersectionObserver' in window){
   }
  });
 })();
+
+
+/* Native tap reaction on the exact approved poster; all controls remain functional. */
+(function setupApprovedFamilyPoster(){
+ const btn=document.querySelector('.family-exact-pet-love');
+ const poster=document.querySelector('.family-exact-mobile');
+ if(!btn||!poster)return;
+ btn.addEventListener('click',()=>{
+   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+   for(let i=0;i<4;i++){
+     const heart=document.createElement('span');
+     heart.className='family-exact-heart';heart.textContent='♥';
+     heart.setAttribute('aria-hidden','true');
+     heart.style.left=(45+i*10)+'%';
+     heart.style.top=(47+(i%2)*3)+'%';
+     heart.style.setProperty('--dx',(-42+i*27)+'px');
+     heart.style.setProperty('--dy',(-95-i*14)+'px');
+     poster.append(heart);
+     heart.addEventListener('animationend',()=>heart.remove(),{once:true});
+   }
+ });
+})();
