@@ -832,3 +832,23 @@ h1 em,h2 em{font-style:normal;color:var(--yellow)}
 @media(prefers-reduced-motion:reduce){
   .family-exact-heart{animation:none!important;display:none!important}
 }
+
+
+/* FINAL FIDELITY GUARD — keep the approved mobile poster at its intrinsic ratio.
+   The artwork itself is never cropped or stretched; the real tap targets scale with it. */
+@media(max-width:700px){
+  .premium-pet-hero .family-exact-mobile{
+    width:100%;
+    height:auto;
+    aspect-ratio:auto;
+    overflow:hidden;
+  }
+  .premium-pet-hero .family-exact-image{
+    display:block;
+    width:100%;
+    height:auto;
+    aspect-ratio:941 / 1528;
+    object-fit:contain;
+    object-position:top center;
+  }
+}
