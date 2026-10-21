@@ -290,32 +290,62 @@ if(map && 'IntersectionObserver' in window){
 }
 
 
-/* Hero microinteractions — pointer-sensitive, accessible and motion-reduced.
-   The artwork is static; subtle transforms create depth rather than faking live footage. */
+/* Hero microinteractions — layered 3D, pointer response, blinks and a playful wink.
+   Desktop only; the approved mobile poster and its responsive rules are untouched. */
 (function setupPetHero(){
  const stage=document.getElementById('heroPetStage');
  const hero=document.querySelector('.premium-pet-hero');
  const hit=document.getElementById('petSceneTouch');
- if(!stage||!hero||!hit)return;
- const supportsPointer=matchMedia('(hover:hover) and (pointer:fine)');
+ const scene=stage?.querySelector('.pet-hero-scene');
+ if(!stage||!hero||!hit||!scene)return;
+ const supportsPointer=matchMedia('(hover:hover) and (pointer:fine) and (min-width:701px)');
  const canAnimate=()=>!reducedMotion.matches;
- let queued=0, px=0,py=0;
+ let queued=0,px=0,py=0,blinkTimer=0,winkTimer=0;
  const update=()=>{
    queued=0;
    stage.style.setProperty('--hero-shift-x',(px*10).toFixed(1)+'px');
    stage.style.setProperty('--hero-shift-y',(py*7).toFixed(1)+'px');
    stage.style.setProperty('--hero-tilt',(px*1.15).toFixed(2)+'deg');
+   stage.style.setProperty('--hero-art-x',(px*4.2).toFixed(1)+'px');
+   stage.style.setProperty('--hero-art-y',(py*3.2).toFixed(1)+'px');
+   stage.style.setProperty('--hero-depth-x',(px*-8.2).toFixed(1)+'px');
+   stage.style.setProperty('--hero-depth-y',(py*-5.8).toFixed(1)+'px');
+   stage.style.setProperty('--hero-react-x',(px*6.4).toFixed(1)+'px');
+   stage.style.setProperty('--hero-react-y',(py*4.6).toFixed(1)+'px');
  };
  const move=e=>{
    if(!canAnimate()||!supportsPointer.matches)return;
    const r=stage.getBoundingClientRect();
    px=Math.max(-1,Math.min(1,((e.clientX-r.left)/r.width-.5)*2));
    py=Math.max(-1,Math.min(1,((e.clientY-r.top)/r.height-.5)*2));
+   stage.classList.add('is-reacting');
    if(!queued)queued=requestAnimationFrame(update);
  };
  const reset=()=>{
-   px=0;py=0;if(!queued)queued=requestAnimationFrame(update);
+   px=0;py=0;stage.classList.remove('is-reacting');
+   if(!queued)queued=requestAnimationFrame(update);
  };
+ const blink=()=>{
+   if(!canAnimate()||!supportsPointer.matches)return;
+   scene.classList.remove('is-blinking');
+   void scene.offsetWidth;
+   scene.classList.add('is-blinking');
+   window.setTimeout(()=>scene.classList.remove('is-blinking'),280);
+ };
+ const scheduleBlink=()=>{
+   window.clearTimeout(blinkTimer);
+   if(!canAnimate()||!supportsPointer.matches)return;
+   blinkTimer=window.setTimeout(()=>{
+     const r=stage.getBoundingClientRect();
+     if(r.bottom>0&&r.top<innerHeight)blink();
+     scheduleBlink();
+   },4700+Math.random()*3900);
+ };
+ stage.addEventListener('pointerenter',()=>{
+   if(!canAnimate()||!supportsPointer.matches)return;
+   stage.classList.add('is-reacting');
+   blink();
+ },{passive:true});
  stage.addEventListener('pointermove',move,{passive:true});
  stage.addEventListener('pointerleave',reset,{passive:true});
  function hearts(e){
@@ -335,11 +365,22 @@ if(map && 'IntersectionObserver' in window){
      stage.append(el);
      el.addEventListener('animationend',()=>el.remove(),{once:true});
    }
+   scene.classList.remove('is-winking');
+   void scene.offsetWidth;
+   scene.classList.add('is-winking');
+   window.clearTimeout(winkTimer);
+   winkTimer=window.setTimeout(()=>scene.classList.remove('is-winking'),720);
  }
  hit.addEventListener('click',hearts);
- reducedMotion.addEventListener?.('change',()=>{if(reducedMotion.matches){stage.style.removeProperty('--hero-shift-x');stage.style.removeProperty('--hero-shift-y');stage.style.removeProperty('--hero-tilt');}});
+ reducedMotion.addEventListener?.('change',()=>{
+   if(reducedMotion.matches){
+     window.clearTimeout(blinkTimer);window.clearTimeout(winkTimer);
+     stage.classList.remove('is-reacting');scene.classList.remove('is-blinking','is-winking');
+     ['--hero-shift-x','--hero-shift-y','--hero-tilt','--hero-art-x','--hero-art-y','--hero-depth-x','--hero-depth-y','--hero-react-x','--hero-react-y'].forEach(k=>stage.style.removeProperty(k));
+   }else scheduleBlink();
+ });
+ scheduleBlink();
 })();
-
 
 
 /* PREMIUM MOTION PASS 02: conservative UI microinteractions.
