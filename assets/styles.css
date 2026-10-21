@@ -852,3 +852,63 @@ h1 em,h2 em{font-style:normal;color:var(--yellow)}
     object-position:top center;
   }
 }
+
+
+/* DESKTOP APPROVED COMPOSITION — horizontal hero. Mobile rules remain untouched. */
+@media (min-width:701px){
+  .premium-pet-hero{position:relative;isolation:isolate;overflow:hidden;background:#06285f}
+  .premium-pet-hero .hero-glow{display:block;position:absolute;inset:0;z-index:-2;background:
+    radial-gradient(ellipse at 77% 36%,rgba(22,104,218,.78),transparent 46%),
+    radial-gradient(ellipse at 94% 82%,rgba(11,69,155,.7),transparent 42%),
+    linear-gradient(112deg,#061d4b 0%,#073b86 56%,#06275e 100%)}
+  .premium-pet-hero .hero-layout{width:min(1480px,calc(100% - 72px));min-height:570px;grid-template-columns:minmax(0,48%) minmax(0,52%);grid-template-rows:auto auto;align-items:center;gap:0;padding:36px 0 28px}
+  .premium-pet-hero .hero-copy{grid-column:1;grid-row:1;align-self:stretch;justify-content:center;padding:24px 8px 22px 0;max-width:650px}
+  .premium-pet-hero .hero-copy .mobile-family-kicker{font-size:clamp(11px,.9vw,14px);letter-spacing:.19em;margin-bottom:18px}
+  .premium-pet-hero .hero-copy .mobile-family-title{font-size:clamp(42px,4.15vw,72px);line-height:1.02;letter-spacing:-.055em;max-width:650px;margin:0 0 18px}
+  .premium-pet-hero .hero-copy>p{font-size:clamp(15px,1.12vw,18px);line-height:1.65;max-width:570px;margin-bottom:24px;color:#e4efff}
+  .premium-pet-hero .hero-actions{order:4;max-width:620px;gap:12px;margin:0 0 20px}
+  .premium-pet-hero .hero-actions .btn{min-height:54px;padding:14px 20px;font-size:13px;border-radius:13px}
+  .premium-pet-hero .hero-chips{order:5;max-width:620px;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:0}
+  .premium-pet-hero .hero-chips a{min-height:44px;flex-direction:row;justify-content:center;gap:7px;padding:10px 8px;border-radius:10px;font-size:11px;background:rgba(4,28,69,.56);white-space:nowrap}
+  .premium-pet-hero .hero-chips a::after{display:none}
+  .premium-pet-hero .hero-chips svg{width:19px;height:19px;flex:0 0 auto}
+  .premium-pet-hero .hero-visual{grid-column:2;grid-row:1;width:112%;height:auto;aspect-ratio:862/670;max-height:570px;margin:0 0 0 -5%;align-self:center;overflow:visible;z-index:1}
+  .premium-pet-hero .mobile-family-scene{display:none!important}
+  .premium-pet-hero .pet-hero-scene{display:block!important;position:absolute;inset:0;overflow:visible;isolation:isolate;border-radius:0;transform:translate3d(var(--hero-shift-x,0),var(--hero-shift-y,0),0) rotate(var(--hero-tilt,0));transition:transform .28s ease-out}
+  .premium-pet-hero .pet-hero-art{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 22px 30px rgba(0,10,35,.24));animation:desktopPetFloat 7s ease-in-out infinite}
+  .premium-pet-hero .pet-scene-touch{position:absolute;inset:8% 5% 5% 5%;width:90%;height:87%;border:0;background:transparent;border-radius:35%;cursor:pointer}
+  .premium-pet-hero .pet-scene-hint{position:absolute;right:2%;bottom:7%;display:flex;align-items:center;gap:9px;padding:12px 18px;border:1px solid rgba(255,220,30,.8);border-radius:999px;background:rgba(7,43,98,.94);box-shadow:0 8px 25px #00183b50;color:#fff;font:800 13px Montserrat,sans-serif;opacity:.98}
+  .premium-pet-hero .pet-scene-hint span{color:#ffdc20;font-size:25px;line-height:1}
+  .premium-pet-hero .pet-scene-heart{position:absolute;z-index:2;pointer-events:none;color:#ffdc22;text-shadow:0 0 20px #ffe33180;animation:desktopHeartPulse 2.4s ease-in-out infinite}
+  .premium-pet-hero .pet-heart-1{top:9%;left:7%;font-size:clamp(25px,3vw,46px)}
+  .premium-pet-hero .pet-heart-2{top:23%;left:1%;font-size:28px;animation-delay:.4s}
+  .premium-pet-hero .pet-heart-3{top:45%;right:0;font-size:30px;animation-delay:.8s}
+  .premium-pet-hero .pet-heart-4{bottom:14%;left:18%;font-size:22px;animation-delay:1.2s}
+  .premium-pet-hero .hero-paw-trail{display:block;position:absolute;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+  .premium-pet-hero .paw-track{position:absolute;display:block;color:#9bcaff;opacity:.18;animation:desktopPawDrift 10s ease-in-out infinite}
+  .premium-pet-hero .paw-track svg{width:clamp(25px,3vw,48px);height:clamp(25px,3vw,48px)}
+  .premium-pet-hero .paw-track-1{left:3%;top:18%}.premium-pet-hero .paw-track-2{left:20%;top:8%;animation-delay:-2s}
+  .premium-pet-hero .paw-track-3{left:37%;top:30%;animation-delay:-4s}.premium-pet-hero .paw-track-4{left:55%;top:9%;animation-delay:-6s}
+  .premium-pet-hero .paw-track-5{left:72%;top:20%;animation-delay:-3s}.premium-pet-hero .paw-track-6{left:90%;top:13%;animation-delay:-5s}
+  .premium-pet-hero .paw-track-7{left:8%;top:73%;animation-delay:-7s}.premium-pet-hero .paw-track-8{left:45%;top:76%;animation-delay:-1s}
+  .premium-pet-hero .paw-track-9{left:84%;top:71%;animation-delay:-4.5s}.premium-pet-hero .paw-track-10{left:64%;top:55%;animation-delay:-8s}
+  .premium-pet-hero .mobile-family-trust{grid-column:1/-1;grid-row:2;margin:22px 0 0;padding:16px 0 0;border-top:1px solid rgba(180,214,255,.18)}
+  .premium-pet-hero .hero-scroll{display:none}
+  .premium-pet-hero .mobile-family-title em:first-of-type{color:#ffdc20}
+  .premium-pet-hero .mobile-family-title em:last-of-type{color:#ffdc20}
+}
+@keyframes desktopPetFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes desktopHeartPulse{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.18);opacity:1}}
+@keyframes desktopPawDrift{0%,100%{transform:translate3d(0,0,0) rotate(-7deg);opacity:.1}50%{transform:translate3d(5px,-13px,0) rotate(5deg);opacity:.23}}
+@media (min-width:701px) and (max-width:1050px){
+  .premium-pet-hero .hero-layout{width:calc(100% - 48px);grid-template-columns:minmax(0,50%) minmax(0,50%);min-height:490px;padding-top:25px}
+  .premium-pet-hero .hero-copy .mobile-family-title{font-size:clamp(37px,4.5vw,50px)}
+  .premium-pet-hero .hero-copy>p{font-size:14px}
+  .premium-pet-hero .hero-visual{width:112%;margin-left:-6%}
+  .premium-pet-hero .hero-chips a{font-size:9px;padding-inline:4px}
+  .premium-pet-hero .hero-actions .btn{font-size:11px;padding-inline:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  .premium-pet-hero .pet-hero-art,.premium-pet-hero .pet-scene-heart,.premium-pet-hero .paw-track{animation:none!important}
+  .premium-pet-hero .pet-hero-scene{transition:none!important;transform:none!important}
+}
